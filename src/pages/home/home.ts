@@ -15,9 +15,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  AffirmationPageRoot: any = 'AffirmationPage';
+  CrisisPageRoot: any = 'CrisisPageRoot';
+  HomePageRoot: any = 'HomePageRoot';
+  MoodPageRoot: any = 'MoodPageRoot';
+  SettingsPageRoot: any = 'SettingsPageRoot';
+  TaskPageRoot: any = 'TaskPageRoot';
+  VentPageRoot: any = 'VentPageRoot';
+  myIndex: number;
 
+  constructor(navParams: NavParams) {
+    // Set the active tab based on the passed index from menu.ts
+    this.myIndex = navParams.data.tabIndex || 0;
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
