@@ -14,8 +14,8 @@ import { IonicPage, NavController, NavParams, ViewContoller, Keyboard } from 'io
   templateUrl: 'vent.html',
 })
 export class VentPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard, public viewContoller: ViewContoller) {
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard, public viewContoller: ViewContoller) {
   }
 
   ionViewDidLoad() {
