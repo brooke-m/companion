@@ -11,10 +11,20 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     </ion-buttons>
+
     <ion-title>VentPage</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  This page has no tabs!
+  <ion-item class='input-field'>
+    <ion-label floating *ngFor="let user of userService.user"> Vent Here {{user.userName}}</ion-label>
+
+    <ion-input type="text"></ion-input>
+
+    <ion-buttons start>
+      <button ion-button >Send</button>
+    </ion-buttons>
+
+  </ion-item>
 </ion-content>

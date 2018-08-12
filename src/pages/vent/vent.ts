@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewContoller, Keyboard } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, ViewController, Keyboard } from 'ionic-angular';
+import { User } from '../../providers/user/user';
 /**
  * Generated class for the VentPage page.
  *
@@ -14,8 +14,9 @@ import { IonicPage, NavController, NavParams, ViewContoller, Keyboard } from 'io
   templateUrl: 'vent.html',
 })
 export class VentPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard, public viewContoller: ViewContoller) {
+  userData:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard, public viewController: ViewController, public userService: User) {
+    this.userData = this.userService.load();
   }
 
   ionViewDidLoad() {
@@ -23,8 +24,7 @@ export class VentPage {
 
   }
 
-  showKeyboard() {
-    this.keyboard.show();
+  showKeyboardCheck() {
     console.log('keyboard is working:', this.keyboard.isOpen());
   }
 }
