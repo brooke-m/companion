@@ -14,7 +14,7 @@ import { User } from '../../providers/user/user';
 })
 export class LoginPage {
   userData:any;
-  userId:string = "";
+  userName:string = "";
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: User) {
     this.userData = navParams.data.userData;
   }
@@ -24,7 +24,7 @@ export class LoginPage {
   }
 
   doLogin() {
-    this.userService.addUser(this.userId);
+    this.userService.addUser(this.userName);
     this.navCtrl.setRoot('MenuPage');
   }
 }
