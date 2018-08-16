@@ -24,6 +24,7 @@ import { User } from '../providers/user/user';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp)
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
