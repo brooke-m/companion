@@ -11,5 +11,15 @@
 </ion-header>
 
 <ion-content padding>
+
+  <ion-list>
+
+    <ion-item class='input-field'>
+      <ion-label fixed >
+       <i class="fa fa-user"></i>Username</ion-label>
+      <ion-input  type="text" value="" [(ngModel)]="userName"></ion-input>
+    </ion-item>
+
+  </ion-list>
   <button ion-button full (click)="doLogin()">Login</button>
 </ion-content>

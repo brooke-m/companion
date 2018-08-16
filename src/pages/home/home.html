@@ -4,10 +4,6 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<!-- <ion-tabs [selectedIndex]="myIndex">
-  <ion-tab [root]="AffirmationPageRoot" tabTitle="Affirmation" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Tab 2" tabIcon="contacts"></ion-tab>
-</ion-tabs> -->
 <ion-header>
   <ion-navbar>
     <ion-buttons start>
@@ -20,5 +16,44 @@
 </ion-header>
 
 <ion-content padding>
-  This page has no tabs!
+  <ion-item *ngFor="let user of userService.user">
+    Welcome {{user.userName}}
+  </ion-item>
+  <!-- <ion-item *ngFor="let user of userService.user">
+    Welcome {{user.userName}}
+  </ion-item>
+
+  <ion-item>
+    Need to talk? (1737, free txt)
+  </ion-item>
+  <ion-item>
+    Depression helpline (0800 111 757)
+  </ion-item>
+  <ion-item>
+    Suicide Prevention Helpline (0508 828 865) 0508 TAUTOKO
+  </ion-item>
+  <ion-item>
+    Lifeline (0800 543 354)
+  </ion-item>
+  <ion-item>
+    Samaritans (0800 726 666)
+  </ion-item>
+  <ion-item>
+    Youthline (0800 376 633)
+  </ion-item>
+  <ion-item>
+    Alcoholics Anonymous (0800 229 6757)
+  </ion-item>
+  <ion-item>
+    Narcotics Anonymous (0800 628 632) 0800 NA TODAY
+  </ion-item>
+  <ion-item>
+    Alcohol and Drug Hotline
+    <ion-item>
+      General (0800 787 797)
+    </ion-item>
+    <ion-item>
+      Pasifika Line (0800 787 799)
+    </ion-item>
+  </ion-item> -->
 </ion-content>

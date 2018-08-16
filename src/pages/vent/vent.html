@@ -11,10 +11,26 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     </ion-buttons>
+
     <ion-title>VentPage</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  This page has no tabs!
+<div class="text">{{messages[0]}}
+
+</div>
 </ion-content>
+
+<ion-footer>
+  <ion-buttons end>
+  <ion-item class='input-field'>
+    <ion-label floating *ngFor="let user of userService.user" > Vent Here {{user.userName}}</ion-label>
+
+    <ion-input type="text" [(ngModel)]='message'></ion-input>
+  </ion-item>
+
+
+    <button ion-button type='submit' (click)='addMessage()'>Send</button>
+  </ion-buttons>
+</ion-footer>

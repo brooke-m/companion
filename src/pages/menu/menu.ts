@@ -1,13 +1,12 @@
-import { AffirmationPage } from '../affirmation/affirmation';
-import { CrisisPage } from '../crisis/crisis';
+// import { AffirmationPage } from '../affirmation/affirmation';
+// import { CrisisPage } from '../crisis/crisis';
 import { HomePage } from '../home/home';
-import { MoodPage } from '../mood/mood';
-import { SettingsPage } from '../settings/settings';
-import { TaskPage } from '../task/task';
-import { VentPage } from '../vent/vent';
-
+// import { MoodPage } from '../mood/mood';
+// import { SettingsPage } from '../settings/settings';
+// import { TaskPage } from '../task/task';
+// import { VentPage } from '../vent/vent';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, Nav } from 'ionic-angular';
+import { IonicPage, NavController, Nav, NavParams } from 'ionic-angular';
 
 export interface PageInterface {
   title: string;
@@ -24,7 +23,7 @@ export interface PageInterface {
 export class MenuPage {
   // Basic root for our content view
   rootPage = 'HomePage';
-
+  userData:any;
   // Reference to the app's root nav
   @ViewChild(Nav) nav: Nav;
 
@@ -38,7 +37,9 @@ export class MenuPage {
     { title: 'Home Page', pageName: 'HomePage', index: 6},
   ];
 
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.userData = navParams.data.userData;
+  }
 
   openPage(page: PageInterface) {
     let params = {};
