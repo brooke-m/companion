@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController  } from 'ionic-angular';
 import { Contacts, ContactField, ContactName, ContactFindOptions, ContactFieldType } from '@ionic-native/contacts';
 import { SMS } from '@ionic-native/sms';
 import { CallNumber } from '@ionic-native/call-number';
+
 /**
  * Generated class for the CrisisPage page.
  *
@@ -22,7 +23,7 @@ export class CrisisPage {
   firstName:string = '';
   name:string;
 
-  constructor(private contact: Contacts, public navCtrl: NavController, public navParams: NavParams, public sms: SMS, public callNum: CallNumber) {
+  constructor(private alertCtrl: AlertController, private contact: Contacts, public navCtrl: NavController, public navParams: NavParams, public sms: SMS, public callNum: CallNumber) {
 
   }
 
@@ -42,7 +43,7 @@ export class CrisisPage {
       }
     }
     this.sms.send(this.number, 'Crisis Alert', options).then(()=>{
-      presentAlert();
+      this.presentAlert();
       console.log('TXT triggered');
     }).catch((err)=>{
       alert(JSON.stringify(err))
@@ -88,24 +89,4 @@ export class CrisisPage {
       console.log(e);
     }
   }
-
-  // async findContact() {
-  //   try {
-  //     const options = new ContactFindOptions();
-  //
-  //     options.filter = 'Mike Yeet';
-  //     options.hasPhoneNumber = true;
-  //
-  //     const fields: ContactFieldType[] = ['name'];
-  //
-  //     const filteredContact = await this.contact.find(fields, options);
-  //
-  //     // setCont(filteredContact.name, filteredContact.phone);
-  //     console.log('Filtered contacts: ', filteredContact);
-  //   }
-  //   catch(e) {
-  //     console.log(e);
-  //   }
-  // }
-
 }
