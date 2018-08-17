@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-// import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
+import { Contacts, ContactField, ContactName, ContactFindOptions, ContactFieldType } from '@ionic-native/contacts';
 import { SMS } from '@ionic-native/sms';
 import { CallNumber } from '@ionic-native/call-number';
 /**
@@ -17,9 +17,12 @@ import { CallNumber } from '@ionic-native/call-number';
 })
 export class CrisisPage {
 
-  number:string = "0271231234";
+  number:string = '';
+  lastName:string = '';
+  firstName:string = '';
+  name:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public sms: SMS, public callNum: CallNumber) {
+  constructor(private contact: Contacts, public navCtrl: NavController, public navParams: NavParams, public sms: SMS, public callNum: CallNumber) {
 
   }
 
@@ -39,11 +42,70 @@ export class CrisisPage {
       }
     }
     this.sms.send(this.number, 'Crisis Alert', options).then(()=>{
+      presentAlert();
       console.log('TXT triggered');
     }).catch((err)=>{
       alert(JSON.stringify(err))
     });
   }
 
+  presentAlert() {
+  let alert = this.alertCtrl.create({
+    title: 'Crisis Txt Sent',
+    message: 'Txt sent to: ' + this.firstName,
+    buttons: ['Thanks']
+    });
+    alert.present();
+  }
+
+  async getContacts() {
+    try {
+      const selectedContact = await this.contact.pickContact();
+      alert('Retrieved: ' + selectedContact.displayName);
+      this.name = selectedContact.displayName;
+      this.number = selectedContact.phoneNumbers[0].value;
+      console.log('Selected contact: ', selectedContact);
+    }
+    catch(e) {
+      console.log(e);
+    }
+  }
+
+  async addContact() {
+    try {
+      const newContact = this.contact.create();
+
+      newContact.name = new ContactName(null, this.lastName, this.firstName);
+
+      newContact.phoneNumbers = [new ContactField('mobile', this.number)];
+
+      await newContact.save();
+
+      this.name = newContact.displayName;
+      console.log('New contact saved: ', newContact);
+    }
+    catch(e) {
+      console.log(e);
+    }
+  }
+
+  // async findContact() {
+  //   try {
+  //     const options = new ContactFindOptions();
+  //
+  //     options.filter = 'Mike Yeet';
+  //     options.hasPhoneNumber = true;
+  //
+  //     const fields: ContactFieldType[] = ['name'];
+  //
+  //     const filteredContact = await this.contact.find(fields, options);
+  //
+  //     // setCont(filteredContact.name, filteredContact.phone);
+  //     console.log('Filtered contacts: ', filteredContact);
+  //   }
+  //   catch(e) {
+  //     console.log(e);
+  //   }
+  // }
 
 }

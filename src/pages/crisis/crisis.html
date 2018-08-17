@@ -16,10 +16,22 @@
 </ion-header>
 
 <ion-content padding>
+  <button ion-button clear block (click)='getContacts()'>Get Contacts</button>
+  <!-- <button ion-button clear block (click)='findContact()'>Find Contact</button> -->
 
-  <!-- <ion-item>
-    <ion-label stacked>Name</ion-label>
-    <ion-input type="text" value="" [(ngModel)]="name"></ion-input>
+  <ion-item>
+    <ion-item>Name : {{ name }}</ion-item>
+    <ion-item>Number : {{ number }}</ion-item>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>First Name</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="firstName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Last Name</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="lastName"></ion-input>
   </ion-item>
 
   <ion-item>
@@ -27,8 +39,7 @@
     <ion-input type="tel" value="" [(ngModel)]="number"></ion-input>
   </ion-item>
 
-  <button ion-button full (click)="saveContact()">Save Contact</button> -->
-
+  <button ion-button clear block (click)='addContact()'>Add Contact</button>
 
 </ion-content>
 

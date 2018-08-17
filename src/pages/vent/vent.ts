@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Keyboard } from 'ionic-angular';
 import { User } from '../../providers/user/user';
+import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the VentPage page.
  *
@@ -18,7 +19,7 @@ export class VentPage {
   message:string = "";
   messages:any = [];
   deleteTimer:number = 7000;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard, public viewController: ViewController, public userService: User) {
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard, public viewController: ViewController, public userService: User) {
     this.userData = this.userService.load();
     // this.messages = [];
   }
@@ -41,5 +42,14 @@ export class VentPage {
 
   removeMessages() {
     this.messages.shift();
+  }
+
+  presentAlert() {
+  let alert = this.alertCtrl.create({
+    title: 'Vent',
+    subTitle: 'This is a place to vent to the ETHER!',
+    buttons: ['Dismiss']
+    });
+    alert.present();
   }
 }
