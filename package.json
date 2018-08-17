@@ -40,11 +40,8 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-<<<<<<< Updated upstream
-      "ionic-plugin-keyboard": {}
-=======
+      "ionic-plugin-keyboard": {},
       "cordova-sqlite-storage": {}
->>>>>>> Stashed changes
     }
   }
 }
