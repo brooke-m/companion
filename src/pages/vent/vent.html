@@ -7,30 +7,38 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons start>
-      <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+      <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     </ion-buttons>
 
-    <ion-title>VentPage</ion-title>
+    <ion-title>Vent</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)='presentAlert()'><ion-icon name="information-circle"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
+
+
 </ion-header>
 
 <ion-content padding>
-<div class="text">{{messages[0]}}
-
-</div>
+  <div id='chatMessages'>
+    <div class="message" *ngFor="let message of messages">
+      <div class="innerMessage">
+        <div class="message">{{ message.message }}</div>
+      </div>
+    </div>
+  </div>
 </ion-content>
 
 <ion-footer>
-  <ion-buttons end>
-  <ion-item class='input-field'>
-    <ion-label floating *ngFor="let user of userService.user" > Vent Here {{user.userName}}</ion-label>
-
-    <ion-input type="text" [(ngModel)]='message'></ion-input>
-  </ion-item>
-
-
-    <button ion-button type='submit' (click)='addMessage()'>Send</button>
-  </ion-buttons>
+  <ion-toolbar>
+    <div id="footer">
+      <div class="elem">
+        <ion-input type="text" [(ngModel)]="message"></ion-input>
+      </div>
+      <div class="elem">
+        <button ion-button icon-only (click)='addMessage()'><ion-icon name="send"></ion-icon></button>
+      </div>
+    </div>
+  </ion-toolbar>
 </ion-footer>
