@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+// import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
+import { SMS } from '@ionic-native/sms';
+import { CallNumber } from '@ionic-native/call-number';
 /**
  * Generated class for the CrisisPage page.
  *
@@ -15,11 +17,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CrisisPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  number:string = "0271231234";
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public sms: SMS, public callNum: CallNumber) {
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CrisisPage');
+  call() {
+    this.callNum.callNumber(this.number, true).then(() => {
+      console.log('Call triggered');
+    }).catch((err) => {
+      alert(JSON.stringify(err))
+    });
   }
+
+  txt() {
+    var options: {
+      replaceLineBreaks: true,
+      android: {
+        intent: 'INTENT'
+      }
+    }
+    this.sms.send(this.number, 'Crisis Alert', options).then(()=>{
+      console.log('TXT triggered');
+    }).catch((err)=>{
+      alert(JSON.stringify(err))
+    });
+  }
+
 
 }

@@ -15,31 +15,31 @@ import { User } from '../../providers/user/user';
 })
 export class VentPage {
   userData:any;
-  messages:any = [];
   message:string = "";
-
+  messages:any = [];
+  deleteTimer:number = 7000;
   constructor(public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard, public viewController: ViewController, public userService: User) {
     this.userData = this.userService.load();
+    // this.messages = [];
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VentPage');
   }
 
-  showKeyboardCheck() {
-    console.log('keyboard is working:', this.keyboard.isOpen());
-  }
-
   addMessage() {
-    this.messages = [ this.message ];
-    this.showMessage();
+    this.messages.push({
+      message: this.message
+    });
+
+    this.message = '';
+
+    setInterval(() => {
+      this.removeMessages();
+    }, this.deleteTimer);
   }
 
-  // sendMessage() {
-  //   console.log(this.messages[0].message);
-  // }
-
-  showMessage() {
-    console.log(this.messages[0]);
+  removeMessages() {
+    this.messages.shift();
   }
 }

@@ -8,13 +8,39 @@
   <ion-navbar>
     <ion-buttons start>
       <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+        <ion-icon name="menu"></ion-icon>
+      </button>
     </ion-buttons>
     <ion-title>CrisisPage</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  This page has no tabs!
+
+  <!-- <ion-item>
+    <ion-label stacked>Name</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Phone</ion-label>
+    <ion-input type="tel" value="" [(ngModel)]="number"></ion-input>
+  </ion-item>
+
+  <button ion-button full (click)="saveContact()">Save Contact</button> -->
+
+
 </ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button full color='primary' (click)='call()'>Call</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full color='secondary' (click)='txt()'>SMS</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
