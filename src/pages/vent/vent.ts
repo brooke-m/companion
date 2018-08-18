@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Keyboard } from 'ionic-angular';
 import { User } from '../../providers/user/user';
+import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the VentPage page.
  *
@@ -15,31 +16,40 @@ import { User } from '../../providers/user/user';
 })
 export class VentPage {
   userData:any;
-  messages:any = [];
   message:string = "";
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard, public viewController: ViewController, public userService: User) {
+  messages:any = [];
+  deleteTimer:number = 7000;
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public keyboard: Keyboard, public viewController: ViewController, public userService: User) {
     this.userData = this.userService.load();
+    // this.messages = [];
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VentPage');
   }
 
-  showKeyboardCheck() {
-    console.log('keyboard is working:', this.keyboard.isOpen());
-  }
-
   addMessage() {
-    this.messages = [ this.message ];
-    this.showMessage();
+    this.messages.push({
+      message: this.message
+    });
+
+    this.message = '';
+
+    setInterval(() => {
+      this.removeMessages();
+    }, this.deleteTimer);
   }
 
-  // sendMessage() {
-  //   console.log(this.messages[0].message);
-  // }
+  removeMessages() {
+    this.messages.shift();
+  }
 
-  showMessage() {
-    console.log(this.messages[0]);
+  presentAlert() {
+  let alert = this.alertCtrl.create({
+    title: 'Vent',
+    subTitle: 'This is a place to vent to the ETHER!',
+    buttons: ['Dismiss']
+    });
+    alert.present();
   }
 }
