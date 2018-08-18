@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+
+import { ModalPage } from '../modal/modal';
 
 /**
  * Generated class for the TaskPage page.
@@ -15,7 +17,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TaskPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  }
+
+  openModal(characterNum) {
+    let modal = this.modalCtrl.create(ModalPage, characterNum);
+    modal.present();
   }
 
   ionViewDidLoad() {

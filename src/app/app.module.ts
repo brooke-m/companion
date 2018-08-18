@@ -10,6 +10,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { MyApp } from './app.component';
 
 import { User } from '../providers/user/user';
+import { ModalPage } from '../pages/modal/modal';
 // import { User } from '../pages/login/login';
 // import { AffirmationPage } from '../pages/affirmation/affirmation';
 // import { CrisisPage } from '../pages/crisis/crisis';
@@ -23,6 +24,7 @@ import { User } from '../providers/user/user';
 @NgModule({
   declarations: [
     MyApp,
+    ModalPage,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { User } from '../providers/user/user';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    ModalPage,
   ],
   providers: [
     Contacts,

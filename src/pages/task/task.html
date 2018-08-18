@@ -16,10 +16,10 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
 
+  <ion-card>
   <ion-card-content>
-    <ion-item>
+    <ion-item (click)="openModal({charNum: 1})">
       Task Name Here
       <button ion-button medium item-end outline icon-end>
         DONE!
@@ -27,7 +27,12 @@
       </button>
     </ion-item>
   </ion-card-content>
-
 </ion-card>
+
+
+  <button ion-button outline block icon-start>
+    <ion-icon name='add-circle'></ion-icon>
+    New Task
+  </button>
 
 </ion-content>
