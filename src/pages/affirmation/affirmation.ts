@@ -37,15 +37,15 @@ export class AffirmationPage {
   ];
 
   selectAffirmation() {
-    quote = this.affirmations[(Math.floor(Math.random() * 15))];
+    this.quote = this.affirmations[(Math.floor(Math.random() * 15))];
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private cdRef:ChangeDetectorRef) {
   }
 
-//   ngOnInit() {
-//     selectAffirmation();
-// }
+  ngOnInit() {
+    this.selectAffirmation();
+}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AffirmationPage');

@@ -37,9 +37,9 @@
       <ion-toggle checked="false"></ion-toggle>
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngFor="let user of userService.user">
       <ion-label>Change User Name: </ion-label>
-      <ion-note item-end>{{ userName }}</ion-note>
+      <ion-note item-end>{{ user.userName }}</ion-note>
     </ion-item>
   </ion-list>
 

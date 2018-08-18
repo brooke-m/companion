@@ -16,14 +16,13 @@ import { User } from '../../providers/user/user';
 })
 export class SettingsPage {
 
-  userName:any;
+  userData:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: User) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
     this.userService.load();
-    this.userName = this.userService.userName || "Fuck it";
   }
 
 }
