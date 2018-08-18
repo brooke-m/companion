@@ -23,7 +23,7 @@ export class HomePage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    this.userService.load()
+    this.userService.load();
   }
 
 }
