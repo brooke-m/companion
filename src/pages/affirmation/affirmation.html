@@ -17,9 +17,11 @@
 
 <ion-content class="card-background-page">
 
-  <ion-card>
+  <ion-card (click)="selectAffirmation()">
     <img src="https://i.imgur.com/1iXtgNY.jpg"/>
     <div class="card-title">{{quote}}</div>
   </ion-card>
+
+  <button ion-button outline block (click)="selectAffirmation()">Refresh Quote</button>
 
 </ion-content>
