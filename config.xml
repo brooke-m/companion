@@ -88,8 +88,9 @@
     <engine name="ios" spec="4.5.5" />
     <engine name="browser" spec="5.0.4" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
-    <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
     <plugin name="cordova-sms-plugin" spec="^0.1.13" />
     <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
+    <allow-navigation href="http://10.140.57.111:8101" />
+    <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
 </widget>

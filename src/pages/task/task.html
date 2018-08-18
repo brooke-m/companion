@@ -18,10 +18,10 @@
 <ion-content padding>
   <ion-card>
 
-  <ion-card-content>
+  <ion-card-content (click)='displayTask()'>
     <ion-item>
-      Task Name Here
-      <button ion-button medium item-end outline icon-end>
+      {{ taskNameToDisplay }}
+      <button ion-button medium item-end outline icon-end (click)='newTask()'>
         DONE!
         <ion-icon name='star'></ion-icon>
       </button>
