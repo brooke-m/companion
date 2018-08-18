@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -15,7 +16,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AffirmationPage {
 
-  affirmations:string  = [
+   quote: string = "";
+
+  affirmations: string[]  = [
     "Self-care is how you take your power back.",
     "Every day and in every way I am getting better and better",
     "I know you're tired. I know you're physically and emotionally drained, but you have to keep going.",
@@ -31,14 +34,18 @@ export class AffirmationPage {
     "It is not overreacting to ask for what you want and need.",
     "You are strong for surviving.",
     "Mental illness is not a personal failure."
-  ]
+  ];
 
   selectAffirmation() {
-    return this.affirmations[Math.floor(Math.random() * this.affirmations.length)];
+    quote = this.affirmations[(Math.floor(Math.random() * 15))];
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private cdRef:ChangeDetectorRef) {
   }
+
+//   ngOnInit() {
+//     selectAffirmation();
+// }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AffirmationPage');
