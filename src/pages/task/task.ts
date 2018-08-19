@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { ModalPage } from '../modal/modal';
-
+// import { TaskProvider } from '../../providers/task/task';
 /**
  * Generated class for the TaskPage page.
  *
@@ -17,17 +17,19 @@ import { ModalPage } from '../modal/modal';
 })
 export class TaskPage {
 
-  taskName:string='Eat shit';
+  task:any;
+
+  taskName:string='';
   taskKey:string='';
-  taskDescription:string='to eat some poo';
-  timesCompleted:number=3;
+  taskDescription:string='';
+  timesCompleted:number=0;
   taskNameToDisplay:string='';
 
-  constructor(public storgae: Storage, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
   }
 
-  openModal(characterNum) {
-    let modal = this.modalCtrl.create(ModalPage, characterNum);
+  openModal(task) {
+    let modal = this.modalCtrl.create(ModalPage, task);
     modal.present();
   }
 
@@ -35,7 +37,7 @@ export class TaskPage {
     console.log('ionViewDidLoad TaskPage');
   }
 
-  newTask() {
+  createTask() {
     this.taskKey = this.taskName;
 
     this.storage.set(this.taskKey, {
@@ -46,11 +48,33 @@ export class TaskPage {
     console.log(this.storage.get(this.taskKey));
   }
 
-  displayTask() {
+  newTask() {
+    this.createTask();
+  }
+
+  incrementTask() {
     this.storage.get(this.taskKey).then((data)=>{
-      this.var=data;
-      this.taskNameToDisplay = this.var.title;
+      var task = data;
+
+      task.completed += 1;
+
+      this.timesCompleted = task.completed;
+
+      this.storage.set(this.taskKey, task)
     });
+  }
+
+  getTask(key) {
+    this.storage.get(key).then((data)=>{
+      this.task = data;
+    });
+  }
+
+  displayTaskName() {
+    this.storage.get(this.taskKey).then((data)=>{
+      this.taskNameToDisplay = data.title;
+    });
+
     console.log(this.taskNameToDisplay);
   }
 }

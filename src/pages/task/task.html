@@ -18,19 +18,28 @@
 <ion-content padding>
 
   <ion-card>
-  <ion-card-content>
-    <ion-item (click)="openModal({charNum: 1})">
-      Task Name Here
-      <button ion-button medium item-end outline icon-end>
-        DONE!
-        <ion-icon name='star'></ion-icon>
-      </button>
-    </ion-item>
-  </ion-card-content>
-</ion-card>
+    <ion-card-content>
+      <ion-item (click)="displayTaskName()">
+        {{ taskNameToDisplay }} completed: {{ timesCompleted }}
+        <button ion-button medium item-end outline icon-end (click)="incrementTask()">
+          DONE!
+          <ion-icon name='star'></ion-icon>
+        </button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
+  <ion-item>
+    <ion-label stacked>Task Name</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="taskName"></ion-input>
+  </ion-item>
 
-  <button ion-button outline block icon-start>
+  <ion-item>
+    <ion-label stacked>Description</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="taskDescription"></ion-input>
+  </ion-item>
+
+  <button ion-button outline block icon-start (click)='newTask()'>
     <ion-icon name='add-circle'></ion-icon>
     New Task
   </button>
