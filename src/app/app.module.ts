@@ -13,6 +13,14 @@ import { User } from '../providers/user/user';
 import { ModalPage } from '../pages/modal/modal';
 import { Task } from '../providers/task/task';
 
+// import { FIREBASE_CONFIG } from './app.firebase.config'
+// import { Firebase } from '@ionic-native/firebase';
+
+import { AuthService } from '../services/auth.service';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { firebaseConfig } from './app.firebase.config';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +30,7 @@ import { Task } from '../providers/task/task';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,7 +38,6 @@ import { Task } from '../providers/task/task';
     ModalPage,
   ],
   providers: [
-
     Contacts,
     SMS,
     CallNumber,
@@ -38,7 +45,9 @@ import { Task } from '../providers/task/task';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Task
+    Task,
+    AuthService,
+    AngularFireAuth,
   ]
 })
 export class AppModule {}
