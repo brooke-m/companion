@@ -42,7 +42,6 @@ export class HomePage {
       }
     });
     console.log('ionViewDidLoad HomePage');
-
   }
 
 }
