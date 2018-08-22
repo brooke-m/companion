@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen'
-//import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule, Storage } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Contacts } from '@ionic-native/contacts';
 import { SMS } from '@ionic-native/sms';
@@ -11,15 +11,16 @@ import { MyApp } from './app.component';
 
 import { User } from '../providers/user/user';
 import { ModalPage } from '../pages/modal/modal';
-// import { User } from '../pages/login/login';
-// import { AffirmationPage } from '../pages/affirmation/affirmation';
-// import { CrisisPage } from '../pages/crisis/crisis';
-// import { HomePage } from '../pages/home/home';
-// import { MenuPage } from '../pages/menu/menu';
-// import { MoodPage } from '../pages/mood/mood';
-// import { SettingsPage } from '../pages/settings/settings';
-// import { TaskPage } from '../pages/task/task';
-// import { VentPage } from '../pages/vent/vent';
+import { Task } from '../providers/task/task';
+
+// import { FIREBASE_CONFIG } from './app.firebase.config'
+// import { Firebase } from '@ionic-native/firebase';
+
+import { AuthService } from '../services/auth.service';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { firebaseConfig } from './app.firebase.config';
+
 
 @NgModule({
   declarations: [
@@ -28,8 +29,8 @@ import { ModalPage } from '../pages/modal/modal';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)//,
-    //IonicStorageModule.forRoot()
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +44,10 @@ import { ModalPage } from '../pages/modal/modal';
     User,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Task,
+    AuthService,
+    AngularFireAuth,
   ]
 })
 export class AppModule {}

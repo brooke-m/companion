@@ -7,18 +7,18 @@ import { firebaseConfig } from '../../app/app.firebase.config'
 import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 /**
- * Generated class for the LoginPage page.
+ * Generated class for the RegisterPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-register',
+  templateUrl: 'register.html',
 })
-export class LoginPage {
-
+export class RegisterPage {
   user = {} as User;
 
   constructor(private fire: AngularFireAuth, private auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
@@ -28,9 +28,14 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  async login(user: User) {
+  async register(user: User) {
     try {
-      const result = this.fire.auth.signInWithEmailAndPassword(user.email, user.password);
+      const result = await this.fire.auth.createUserWithEmailAndPassword(user.email, user.password)
+        .then(data => {
+          console.log("got data: ", data);
+        }).catch(error => {
+          console.error(error);
+        });
       if (result) {
         this.navCtrl.setRoot('MenuPage');
       }
@@ -39,9 +44,7 @@ export class LoginPage {
       console.error(e);
     }
 
-  }
-
-  async register() {
-    this.navCtrl.push('RegisterPage');
+    console.log("Register user info: ", user);
+    this.navCtrl.setRoot('MenuPage');
   }
 }
