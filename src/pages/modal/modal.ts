@@ -23,33 +23,24 @@ export class ModalPage {
   ) {
     var characters = [
       {
-        name: 'Gollum',
-        quote: 'Sneaky little hobbitses!',
-        image: 'assets/img/avatar-gollum.jpg',
+        name: 'Sleep',
+        quote: 'It is good.',
         items: [
-          { title: 'Race', note: 'Hobbit' },
-          { title: 'Culture', note: 'River Folk' },
-          { title: 'Alter Ego', note: 'Smeagol' }
+          { title: 'Completed:', note: '0' }
         ]
       },
       {
-        name: 'Frodo',
-        quote: 'Go back, Sam! I\'m going to Mordor alone!',
-        image: 'assets/img/avatar-frodo.jpg',
+        name: 'Medication',
+        quote: 'Try and take them at the same time every day',
         items: [
-          { title: 'Race', note: 'Hobbit' },
-          { title: 'Culture', note: 'Shire Folk' },
-          { title: 'Weapon', note: 'Sting' }
+          { title: 'Completed:', note: '0' }
         ]
       },
       {
-        name: 'Samwise Gamgee',
-        quote: 'What we need is a few good taters.',
-        image: 'assets/img/avatar-samwise.jpg',
+        name: 'Drink Water',
+        quote: 'Stay hydrated!',
         items: [
-          { title: 'Race', note: 'Hobbit' },
-          { title: 'Culture', note: 'Shire Folk' },
-          { title: 'Nickname', note: 'Sam' }
+          { title: 'Completed:', note: '0' }
         ]
       }
     ];
