@@ -25,11 +25,11 @@ export class TaskPage {
   timesCompleted:number=0;
   taskNameToDisplay:string='';
 
-  constructor(public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
   }
-
-  openModal(task) {
-    let modal = this.modalCtrl.create(ModalPage, task);
+  
+   openModal(characterNum) {
+    let modal = this.modalCtrl.create(ModalPage, characterNum);
     modal.present();
   }
 
