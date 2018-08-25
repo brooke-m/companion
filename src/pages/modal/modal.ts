@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the ModalPage page.
@@ -14,37 +15,31 @@ import { IonicPage, ModalController, NavController, NavParams, Platform, ViewCon
   templateUrl: 'modal.html',
 })
 export class ModalPage {
-  character;
+  task;
 
   constructor(
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController
   ) {
-    var characters = [
+    var tasks = [
       {
         name: 'Sleep',
         quote: 'It is good.',
-        items: [
-          { title: 'Completed:', note: '0' }
-        ]
+        completed: 0
       },
       {
         name: 'Medication',
         quote: 'Try and take them at the same time every day',
-        items: [
-          { title: 'Completed:', note: '0' }
-        ]
+        completed: 0
       },
       {
         name: 'Drink Water',
         quote: 'Stay hydrated!',
-        items: [
-          { title: 'Completed:', note: '0' }
-        ]
+        completed: 0
       }
     ];
-    this.character = characters[this.params.get('charNum')];
+    this.task = tasks[this.params.get('charNum')];
   }
 
   ionViewDidLoad() {

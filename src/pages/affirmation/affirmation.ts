@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the AffirmationPage page.
@@ -38,12 +39,22 @@ export class AffirmationPage {
     this.quote = this.affirmations[(Math.floor(Math.random() * 13))];
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private cdRef:ChangeDetectorRef) {
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private cdRef:ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.selectAffirmation();
 }
+
+  presentAlert() {
+  let alert = this.alertCtrl.create({
+    title: 'Affirmations',
+    subTitle: 'Need a pick me up? Have some feel-good, empowering quotes. Press the image or the refresh button if you need more :)',
+    buttons: ['Dismiss']
+    });
+    alert.present();
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AffirmationPage');

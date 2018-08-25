@@ -21,18 +21,9 @@
 <ion-content>
   <ion-list>
       <ion-item>
-        <ion-avatar item-start>
-          <img src="{{character.image}}">
-        </ion-avatar>
-        <h2>{{character.name}}</h2>
-        <p>{{character.quote}}</p>
-      </ion-item>
-
-      <ion-item *ngFor="let item of character['items']">
-        {{item.title}}
-        <ion-note item-end>
-          {{item.note}}
-        </ion-note>
+        <h2>{{task.name}}</h2>
+        <p>{{task.quote}}</p>
+        <h3>times completed: {{task.completed}}</h3>
       </ion-item>
   </ion-list>
 </ion-content>
