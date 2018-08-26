@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { ModalPage } from '../modal/modal';
+import { NewTaskPage } from '../new-task/new-task';
 import { AlertController } from 'ionic-angular';
 
 //----------------//
@@ -19,6 +20,10 @@ export class TaskPage {
    openModal(characterNum) {
     let modal = this.modalCtrl.create(ModalPage, characterNum);
     modal.present();
+  }
+
+  openNewTaskModal(){
+    let modal = this.modalCtrl(NewTaskPage);
   }
 
   presentAlert() {

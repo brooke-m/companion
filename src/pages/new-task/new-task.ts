@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the NewTaskPage page.
@@ -14,12 +14,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'new-task.html',
 })
 export class NewTaskPage {
+  task;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(
+    public platform: Platform,
+    public params: NavParams,
+    public viewCtrl: ViewController
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NewTaskPage');
+    console.log('ionViewDidLoad ModalPage');
   }
+
+  setTask() {
+
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
 
 }
