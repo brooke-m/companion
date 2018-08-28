@@ -37,6 +37,7 @@ import { firebaseConfig } from './app.firebase.config';
   entryComponents: [
     MyApp,
     ModalPage,
+    NewTaskPage,
   ],
   providers: [
     Contacts,

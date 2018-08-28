@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { ModalPage } from '../modal/modal';
 import { NewTaskPage } from '../new-task/new-task';
 import { AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 
 //----------------//
 
@@ -14,7 +15,12 @@ import { AlertController } from 'ionic-angular';
 })
 export class TaskPage {
 
-  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(
+    private alertCtrl: AlertController,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController,
+    public toastCtrl: ToastController) {
   }
 
    openModal(characterNum) {
@@ -23,8 +29,17 @@ export class TaskPage {
   }
 
   openNewTaskModal(){
-    let modal = this.modalCtrl(NewTaskPage);
+    let modal = this.modalCtrl.create(NewTaskPage);
+    modal.present();
   }
+
+  presentToast() {
+  const toast = this.toastCtrl.create({
+    message: 'Nice!!',
+    duration: 2000
+  });
+  toast.present();
+}
 
   presentAlert() {
   let alert = this.alertCtrl.create({
