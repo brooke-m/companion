@@ -1,12 +1,10 @@
-// import { AffirmationPage } from '../affirmation/affirmation';
-// import { CrisisPage } from '../crisis/crisis';
 import { HomePage } from '../home/home';
-// import { MoodPage } from '../mood/mood';
-// import { SettingsPage } from '../settings/settings';
-// import { TaskPage } from '../task/task';
-// import { VentPage } from '../vent/vent';
+
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav, NavParams } from 'ionic-angular';
+import { firebaseConfig } from '../../app/app.firebase.config'
+import { AuthService } from '../../services/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 export interface PageInterface {
   title: string;
@@ -37,7 +35,7 @@ export class MenuPage {
     { title: 'Home Page', pageName: 'HomePage', index: 6},
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private fire: AngularFireAuth, private auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
     this.userData = navParams.data.userData;
   }
 
@@ -75,6 +73,11 @@ export class MenuPage {
       return 'primary';
     }
     return;
+  }
+
+  logout(){
+    this.fire.auth.signOut();
+    this.navCtrl.setRoot('LoginPage')
   }
 
 }

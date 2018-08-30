@@ -6,52 +6,120 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-buttons start>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
+    <ion-buttons left>
+      <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     </ion-buttons>
-    <ion-title>CrisisPage</ion-title>
+
+    <ion-title>Crisis</ion-title>
+
+    <ion-buttons right>
+      <button ion-button (click)='presentAlert()'><ion-icon name="information-circle"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <button ion-button clear block (click)='getContacts()'>Get Contacts</button>
+
   <!-- <button ion-button clear block (click)='findContact()'>Find Contact</button> -->
+  <ion-card *ngIf="revealSetContact">
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon name="person"></ion-icon>
+          </ion-col>
+          <ion-col col-10>
+            <h2>{{ firstName }}</h2>
+            <p>{{ number }}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-grid *ngIf="contactSet">
+      <ion-row>
+        <ion-col>
+          <button ion-button full color='primary' (click)='call()'>Call</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button full color='secondary' (click)='txt()'>SMS</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+    <button ion-button block clear icon-start (click)='getContacts()'><ion-icon name="person"></ion-icon>Get Contact</button>
+  </ion-card>
 
-  <ion-item>
-    <ion-item>Name : {{ name }}</ion-item>
-    <ion-item>Number : {{ number }}</ion-item>
-  </ion-item>
+  <ion-card>
+    <div id="newContact" *ngIf="revealNewContact">
+      <button ion-button block clear icon-start *ngIf="showNewContact" (click)='showNewContact()'>
+      <ion-icon name='add-circle'></ion-icon>New Contact</button>
+    </div>
 
-  <ion-item>
-    <ion-label stacked>First Name</ion-label>
-    <ion-input type="text" value="" [(ngModel)]="firstName"></ion-input>
-  </ion-item>
+    <div id="addContact" *ngIf="revealAddContact">
+      <ion-item>
+        <ion-label stacked>First Name</ion-label>
+        <ion-input type="text" value="" [(ngModel)]="firstName"></ion-input>
+      </ion-item>
 
-  <ion-item>
-    <ion-label stacked>Last Name</ion-label>
-    <ion-input type="text" value="" [(ngModel)]="lastName"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label stacked>Last Name</ion-label>
+        <ion-input type="text" value="" [(ngModel)]="lastName"></ion-input>
+      </ion-item>
 
-  <ion-item>
-    <ion-label stacked>Phone</ion-label>
-    <ion-input type="tel" value="" [(ngModel)]="number"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label stacked>Phone</ion-label>
+        <ion-input type="tel" value="" [(ngModel)]="number"></ion-input>
+      </ion-item>
 
-  <button ion-button clear block (click)='addContact()'>Add Contact</button>
 
+      <button ion-button clear block (click)='addContact()'>Add Contact</button>
+      <button ion-button clear block (click)='hideNewContact()'>Cancel</button>
+    </div>
+  </ion-card>
+
+  <ion-card>
+
+    <button ion-button block clear icon-start (click)='showHelplines()'><ion-icon name='call'></ion-icon>Helplines</button>
+
+    <div *ngIf="revealHelplines">
+      <ion-list>
+        <ion-item>
+          Need to talk? (1737, free txt)<button ion-button item-end icon-only clear (click)="txtHotline('1737')"><ion-icon name="text" item-end></ion-icon></button>
+        </ion-item>
+        <ion-item>
+          Depression Helpline<button ion-button item-end icon-only clear (click)="helpline('Depression Helpline', '0800111757')"><ion-icon name="call" item-end></ion-icon></button>
+        </ion-item>
+        <ion-item>
+          Suicide Prevention Helpline<button ion-button item-end icon-only clear (click)="helpline('Suicide Prevention Helpline', '0508828865')"><ion-icon name="call" item-end></ion-icon></button>
+        </ion-item>
+        <ion-item>
+          Lifeline<button ion-button item-end icon-only clear (click)="helpline('Lifeline', '0800543354')"><ion-icon name="call" item-end></ion-icon></button>
+        </ion-item>
+        <ion-item>
+          Samaritans<button ion-button item-end icon-only clear (click)="helpline('Samaritans', '0800726666')"><ion-icon name="call" item-end></ion-icon></button>
+        </ion-item>
+        <ion-item>
+          Youthline<button ion-button item-end icon-only clear (click)="helpline('Youthline', '0800376633')"><ion-icon name="call" item-end></ion-icon></button>
+        </ion-item>
+        <ion-item>
+          Alcoholics Anonymous<button ion-button item-end icon-only clear (click)="helpline('Alcoholics Anonymous', '08002296757')"><ion-icon name="call" item-end></ion-icon></button>
+        </ion-item>
+        <ion-item>
+          Narcotics Anonymous<button ion-button item-end icon-only clear (click)="helpline('Narcotics Anonymous', '0800628632')"><ion-icon name="call" item-end></ion-icon></button>
+        </ion-item>
+
+        <ion-item>
+          Alcohol and Drug Hotline
+          <ion-item>
+            General<button ion-button item-end icon-only clear (click)="helpline('General', '0800787797')"><ion-icon name="call" item-end></ion-icon></button>
+          </ion-item>
+          <ion-item>
+            Pasifika Line<button ion-button item-end icon-only clear (click)="helpline('Pasifika Line', '0800787799')"><ion-icon name="call" item-end></ion-icon></button>
+          </ion-item>
+        </ion-item>
+        <button ion-button block clear icon-start (click)='hideHelplines()'>Close</button>
+      </ion-list>
+    </div>
+  </ion-card>
 </ion-content>
-
-<ion-footer>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <button ion-button full color='primary' (click)='call()'>Call</button>
-      </ion-col>
-      <ion-col>
-        <button ion-button full color='secondary' (click)='txt()'>SMS</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-footer>
