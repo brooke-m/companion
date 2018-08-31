@@ -17,7 +17,10 @@ import { User } from '../../providers/user/user';
 export class SettingsPage {
 
   userData:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userService: User) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public userService: User) {
   }
 
   ionViewDidLoad() {

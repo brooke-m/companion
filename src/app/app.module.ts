@@ -11,7 +11,7 @@ import { MyApp } from './app.component';
 
 import { User } from '../providers/user/user';
 import { ModalPage } from '../pages/modal/modal';
-import { Task } from '../providers/task/task';
+import { NewTaskPage } from '../pages/new-task/new-task';
 
 // import { FIREBASE_CONFIG } from './app.firebase.config'
 // import { Firebase } from '@ionic-native/firebase';
@@ -26,6 +26,7 @@ import { firebaseConfig } from './app.firebase.config';
   declarations: [
     MyApp,
     ModalPage,
+    NewTaskPage,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +37,7 @@ import { firebaseConfig } from './app.firebase.config';
   entryComponents: [
     MyApp,
     ModalPage,
+    NewTaskPage,
   ],
   providers: [
     Contacts,
@@ -45,7 +47,6 @@ import { firebaseConfig } from './app.firebase.config';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Task,
     AuthService,
     AngularFireAuth,
   ]

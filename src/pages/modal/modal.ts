@@ -24,8 +24,8 @@ export class ModalPage {
   ) {
     var tasks = [
       {
-        name: 'Sleep',
-        quote: 'It is good.',
+        name: 'This is a task name',
+        quote: 'This is where you would put the task description',
         completed: 0
       },
       {
@@ -36,7 +36,7 @@ export class ModalPage {
       {
         name: 'Drink Water',
         quote: 'Stay hydrated!',
-        completed: 0
+        completed: 5
       }
     ];
     this.task = tasks[this.params.get('charNum')];

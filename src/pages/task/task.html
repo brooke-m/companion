@@ -23,8 +23,8 @@
   <ion-card>
     <ion-card-content>
       <ion-item (click)="openModal({charNum: 1})">
-        Task Name Here
-          <button ion-button medium item-end outline icon-end>
+        Medication
+          <button ion-button medium item-end outline icon-end (click)="presentToast()">
           DONE!
           <ion-icon name='star'></ion-icon>
         </button>
@@ -32,9 +32,34 @@
     </ion-card-content>
   </ion-card>
 
-  <button ion-button outline block icon-start>
+  <ion-card>
+    <ion-card-content>
+      <ion-item (click)="openModal({charNum: 2})">
+        Drink Water
+          <button ion-button medium item-end outline icon-end (click)="presentToast()">
+          DONE!
+          <ion-icon name='star'></ion-icon>
+        </button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item (click)="openModal({charNum: 0})">
+        [Example Task]
+          <button ion-button medium item-end outline icon-end (click)="presentToast()">
+          DONE!
+          <ion-icon name='star'></ion-icon>
+        </button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <button ion-button outline block icon-start (click)="openNewTaskModal()">
   <ion-icon name='add-circle'></ion-icon>
     New Task
   </button>
+
 
 </ion-content>

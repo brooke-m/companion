@@ -12,6 +12,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { TaskPage } from '../pages/task/task';
 import { VentPage } from '../pages/vent/vent';
 import { ModalPage } from '../pages/modal/modal';
+import { NewTaskPage } from '../pages/new-task/new-task';
 
 @Component({
   templateUrl: 'app.html'

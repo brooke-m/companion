@@ -28,11 +28,10 @@ export class MenuPage {
   pages: PageInterface[] = [
     { title: 'Affirmation Page', pageName: 'AffirmationPage', index: 0 },
     { title: 'Crisis Page', pageName: 'CrisisPage', index: 1 },
-    { title: 'Mood Page', pageName: 'MoodPage', index: 2 },
-    { title: 'Task Page', pageName: 'TaskPage', index: 3 },
-    { title: 'Vent Page', pageName: 'VentPage', index: 4},
-    { title: 'Settings Page', pageName: 'SettingsPage', index: 5},
-    { title: 'Home Page', pageName: 'HomePage', index: 6},
+    { title: 'Task Page', pageName: 'TaskPage', index: 2 },
+    { title: 'Vent Page', pageName: 'VentPage', index: 3},
+    { title: 'Settings Page', pageName: 'SettingsPage', index: 4},
+    { title: 'Home Page', pageName: 'HomePage', index: 5},
   ];
 
   constructor(private fire: AngularFireAuth, private auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
