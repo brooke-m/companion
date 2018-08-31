@@ -8,7 +8,7 @@
   <ion-header>
     <ion-navbar primary>
       <ion-title>Menu</ion-title>
-      <ion-buttons start>
+      <ion-buttons left>
         <button ion-button menuToggle left>
           <ion-icon name="menu"></ion-icon>
         </button>
@@ -23,7 +23,18 @@
       </button>
     </ion-list>
   </ion-content>
+  <ion-footer>
+    <ion-navbar primary>
+      <ion-title>Log Out</ion-title>
+      <ion-buttons left>
+        <button ion-button left (click)="logout()">
+          <ion-icon name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-footer>
 </ion-menu>
 
 <!-- main navigation -->
+
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

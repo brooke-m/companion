@@ -6,13 +6,13 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-buttons start>
+    <ion-buttons left>
       <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     </ion-buttons>
 
     <ion-title>Vent</ion-title>
 
-    <ion-buttons end>
+    <ion-buttons right>
       <button ion-button (click)='presentAlert()'><ion-icon name="information-circle"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
@@ -24,7 +24,7 @@
   <div id='chatMessages'>
     <div class="message" *ngFor="let message of messages">
       <div class="innerMessage">
-        <div class="message">{{ message.message }}</div>
+        <div class="message" >{{ message.message }}</div>
       </div>
     </div>
   </div>
@@ -34,7 +34,7 @@
   <ion-toolbar>
     <div id="footer">
       <div class="elem">
-        <ion-input type="text" [(ngModel)]="message"></ion-input>
+        <ion-input placeholder="Vent Here" type="text" [(ngModel)]="message"></ion-input>
       </div>
       <div class="elem">
         <button ion-button icon-only (click)='addMessage()'><ion-icon name="send"></ion-icon></button>

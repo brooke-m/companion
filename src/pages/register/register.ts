@@ -33,6 +33,7 @@ export class RegisterPage {
       const result = await this.fire.auth.createUserWithEmailAndPassword(user.email, user.password)
         .then(data => {
           console.log("got data: ", data);
+
         }).catch(error => {
           console.error(error);
         });
@@ -43,6 +44,7 @@ export class RegisterPage {
     catch (e) {
       console.error(e);
     }
+
 
     console.log("Register user info: ", user);
     this.navCtrl.setRoot('MenuPage');

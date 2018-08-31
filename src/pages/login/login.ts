@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { User } from '../../models/user';
 
@@ -21,7 +21,7 @@ export class LoginPage {
 
   user = {} as User;
 
-  constructor(private fire: AngularFireAuth, private auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private fire: AngularFireAuth, private auth: AuthService, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -30,10 +30,18 @@ export class LoginPage {
 
   async login(user: User) {
     try {
-      const result = this.fire.auth.signInWithEmailAndPassword(user.email, user.password);
-      if (result) {
+      this.fire.auth.signInWithEmailAndPassword(user.email, user.password)
+      .then(() => {
         this.navCtrl.setRoot('MenuPage');
-      }
+      })
+      .catch(() => {
+        let alert = this.alertCtrl.create({
+          title: 'Wrong email or password',
+          subTitle: 'Try again',
+          buttons: ['Dismiss']
+          });
+          alert.present();
+      });
     }
     catch (e) {
       console.error(e);

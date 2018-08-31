@@ -17,14 +17,26 @@ import { CallNumber } from '@ionic-native/call-number';
   templateUrl: 'crisis.html',
 })
 export class CrisisPage {
-
+  revealSetContact:boolean = false;
+  contactSet:boolean = false;
   number:string = '';
   lastName:string = '';
   firstName:string = '';
   name:string;
-
+  revealHelplines:boolean = false;
+  revealAddContact:boolean = false;
+  revealNewContact:boolean = true;
   constructor(private alertCtrl: AlertController, private contact: Contacts, public navCtrl: NavController, public navParams: NavParams, public sms: SMS, public callNum: CallNumber) {
 
+  }
+
+  presentAlert() {
+  let alert = this.alertCtrl.create({
+    title: 'Crisis Page',
+    subTitle: 'Need help? Call someone from your cantact list or send them pre written a TXT',
+    buttons: ['Dismiss']
+    });
+    alert.present();
   }
 
   call() {
@@ -43,14 +55,14 @@ export class CrisisPage {
       }
     }
     this.sms.send(this.number, 'Crisis Alert', options).then(()=>{
-      this.presentAlert();
+      this.presentTxtAlert();
       console.log('TXT triggered');
     }).catch((err)=>{
       alert(JSON.stringify(err))
     });
   }
 
-  presentAlert() {
+  presentTxtAlert() {
   let alert = this.alertCtrl.create({
     title: 'Crisis Txt Sent',
     message: 'Txt sent to: ' + this.firstName,
@@ -66,6 +78,7 @@ export class CrisisPage {
       this.name = selectedContact.displayName;
       this.number = selectedContact.phoneNumbers[0].value;
       console.log('Selected contact: ', selectedContact);
+      this.showSelectedContact();
     }
     catch(e) {
       console.log(e);
@@ -82,11 +95,53 @@ export class CrisisPage {
 
       await newContact.save();
 
-      this.name = newContact.displayName;
+
       console.log('New contact saved: ', newContact);
     }
     catch(e) {
       console.log(e);
     }
+    this.hideNewContact();
+    this.showSelectedContact();
+  }
+
+  showNewContact(){
+    this.revealNewContact = false;
+    this.revealAddContact = true;
+  }
+
+  hideNewContact() {
+    this.revealNewContact = true;
+    this.revealAddContact = false;
+  }
+
+  helpline(helplineName, helplineNumber) {
+    this.firstName = helplineName;
+    this.number = helplineNumber;
+    this.showSelectedContact();
+    this.call();
+  }
+
+  txtHotline(helplineNumber) {
+    this.number = helplineNumber;
+    this.firstName = 'Helpline';
+    this.txt();
+  }
+
+  showHelplines() {
+    this.revealHelplines ? this.revealHelplines = false :this.revealHelplines = true;
+  }
+
+  hideHelplines() {
+    this.revealHelplines = false;
+  }
+
+  showFooter() {
+    this.contactSet = true;
+  }
+
+  showSelectedContact() {
+    this.revealSetContact = true;
+    this.showFooter();
   }
 }

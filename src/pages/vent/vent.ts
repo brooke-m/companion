@@ -47,7 +47,7 @@ export class VentPage {
   presentAlert() {
   let alert = this.alertCtrl.create({
     title: 'Vent',
-    subTitle: 'This is a place to vent to the ETHER!',
+    subTitle: 'This is a place to vent to the ETHER! Vent all your troubles away! Just write a message and it will dissapear after a short while.',
     buttons: ['Dismiss']
     });
     alert.present();
