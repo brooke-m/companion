@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
-import { User } from '../../models/user';
+import { User } from '../../providers/user/user';
 
 import { firebaseConfig } from '../../app/app.firebase.config'
 import { AuthService } from '../../services/auth.service';
@@ -21,8 +21,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class HomePage {
 
   myIndex: number;
+  userData:any;
 
-  constructor(private fire: AngularFireAuth, private toast: ToastController, private auth: AuthService, public navParams: NavParams, public navCtrl: NavController) {
+  constructor(
+    private fire: AngularFireAuth,
+    private toast: ToastController,
+    private auth: AuthService,
+    public navParams: NavParams,
+    public navCtrl: NavController,
+    public userService: User) {
     // Set the active tab based on the passed index from menu.ts
   }
 
